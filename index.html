@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <style>       
+        /* body {       
+            margin: 0;      
+        } */
+    </style>    
+  </head>
+
+  <body id="body"></body>
+
+  <script src="./set_canvas_style_size.js"></script>  
+  <script>
+
+    const canvas_width = 1000;
+    const aspect_ratio = 16 / 9;
+    const canvas_height = Math.round( canvas_width * aspect_ratio );
+
+    // works out the canvas_orientation
+    let canvas_orientation = 'square'; // for square canvases
+    if( canvas_height > canvas_width ){
+        canvas_orientation = 'vert'; // vertical
+    } else if( canvas_height < canvas_width ){
+        canvas_orientation = 'horiz'; // horizontal
+    }
+
+    // create a canvas
+    const canvas = document.createElement("canvas");
+ 
+    // set the canvas width / height
+    canvas.width = canvas_width;
+    canvas.height = canvas_height;
+
+    // add the canvas to the dom
+    document.body.appendChild(canvas); 
+
+    // OPTIONAL overrides the function and fits the canvas styles to the window size.
+    const browser_fit = false;
+
+    // call the function to set the canvas style size
+    setCanvasStlyeSize(canvas, canvas_orientation, aspect_ratio, browser_fit );
+    
+    // OPTIONAL - Add some colour to canvas so can see it. 
+    const context = canvas.getContext("2d");
+    context.rect(0, 0, canvas_width, canvas_height);
+    context.fillStyle = "red";
+    context.fill();
+     	   
+
+  </script>    
+</html>
+
+
+
+
